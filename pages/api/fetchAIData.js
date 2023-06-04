@@ -1,5 +1,5 @@
 export default async function getAmazonLink(prompt) {
-    const api = 'https://3yxjdyhkbvyau7opi54dt6zonu0tpwrq.lambda-url.us-east-1.on.aws/amazon';
+    const api = 'https://wc59gatn5i.execute-api.us-east-1.amazonaws.com/test/amazon';
 
     const payload = {
         "text" : prompt
