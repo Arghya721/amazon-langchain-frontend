@@ -1,69 +1,59 @@
-'use-client'
+'use client';
 import React, { useState } from 'react';
-import { Grid, Input, Loading } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
+import { Grid, Textarea } from '@nextui-org/react';
 import { SendButton } from "./SendButton";
 import { SendIcon } from "./SendIcon";
-import getAmazonLink from "../../../pages/api/fetchAIData"
+import { motion } from 'framer-motion';
 
-export const SearchBar = () => {
+export const SearchBar = ({ onSubmit }) => {
+  const router = useRouter();
   const [inputValue, setInputValue] = useState("");
-  const [amazonLink, setAmazonLink] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
   };
 
-  const handleSubmit = async () => {
-    setAmazonLink("");
-    setLoading(true);
-    const link = await getAmazonLink(inputValue);
-    setAmazonLink(link.amazon_link);
-    setLoading(false);
+  const handleSubmit = () => {
+    setIsSubmitted(true);
+    onSubmit();
+
+    
   };
 
   return (
     <>
-
-
-      <div style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "75vh",
-      }}>
-        {loading && <Loading type="points" />}
-
-        {amazonLink !== "" && (
-          <a href={amazonLink} target="_blank">
-            Amazon Link
-          </a>
-        )}
-      </div>
-
-
-
-      <Grid justify='center' style={{
-        position: "fixed",
-        bottom: 50,
-        left: "50%",
-        transform: "translateX(-50%)",
-      }}>
-        <Input
-          clearable
-          width="50rem"
-          // size="xl" 
-          contentRightStyling={false}
-          placeholder="Type your message..."
-          value={inputValue}
-          onChange={handleChange}
-          contentRight={
-            <SendButton onClick={handleSubmit}>
-              <SendIcon />
-            </SendButton>
-          }
-        />
+      <Grid justify='center'>
+        <motion.div
+          initial={{ top: '75vh' }}
+          animate={{ top: isSubmitted ? '5vh' : '75vh' }}
+          transition={{ duration: 0.5 }}
+          style={{
+            position: "relative",
+            left: "50%",
+            transform: "translateX(-50%)",
+            paddingLeft: "50px",
+            paddingRight: "50px",
+          }}
+        >
+          <div style={{ position: 'relative' }}>
+            <Textarea
+              bordered
+              color="secondary"
+              placeholder="Search a product"
+              rows={2}
+              width="100%"
+              style={{ paddingRight: 40 }}
+            />
+            <div style={{ position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)' }}>
+              <SendButton onClick={handleSubmit}>
+                <SendIcon />
+              </SendButton>
+            </div>
+          </div>
+        </motion.div>
       </Grid>
     </>
-  )
+  );
 };
