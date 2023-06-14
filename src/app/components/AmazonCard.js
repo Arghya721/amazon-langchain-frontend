@@ -14,7 +14,7 @@ export const AmazonCard = (props) => {
       isHoverable
       variant="bordered"
     >
-      <Image src={props.image_url} width={150} height={150} fit="cover" />
+      <Image src={props.image_url} width={150} height={150} fit="cover" alt={props.productTitle} />
       <Card.Body >
         <Text h3 style={{
           paddingLeft: "25px",

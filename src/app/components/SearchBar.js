@@ -95,7 +95,7 @@ export const SearchBar = ({ onSubmit }) => {
           )}
 
           {!isLoading && amazonData?.map((item) => (
-            <Grid xs={12} sm={4} style={{
+            <Grid xs={12} sm={4} key={amazonData.asin} style={{
               paddingTop: "50px",
               paddingBottom: "50px",
               paddingLeft: "25px",
