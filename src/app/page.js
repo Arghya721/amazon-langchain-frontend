@@ -1,7 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import Image from 'next/image';
-import styles from './page.module.css';
 import { Header } from './components/Header';
 import { SearchBar } from './components/SearchBar';
 

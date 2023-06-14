@@ -1,5 +1,7 @@
 export default async function getAmazonLink(prompt) {
-    const api = 'http://127.0.0.1:5000/amazon';
+    console.log(process.env.NEXT_PUBLIC_API_URL)
+
+    const api = process.env.NEXT_PUBLIC_API_URL + '/amazon';
 
     const payload = {
         "text" : prompt

@@ -1,51 +1,38 @@
-'use-client'
-import { Card , Row , Col , Spacer , Text } from '@nextui-org/react';
+'use client';
+import { Card, Text, Image } from '@nextui-org/react';
+
 export const AmazonCard = (props) => {
-
-    return (
-        <Card isPressable>
-  <Card.Body css={{ padding: 0 }}>
-    <Card.Image
-      src={props.image_url}
-      objectFit="cover"
-      width="50%"
-      height="auto"
-      alt={props.productTitle}
-    />
-    <Card.Footer
-      isBlurred
-      css={{
-        position: "absolute",
-        padding: "$8",
-        backdropFilter: "blur(10px)",
-        borderTop: "1px solid rgba(255, 255, 255, 0.2)",
-        bottom: 0,
-        zIndex: 1,
-        backgroundColor: "rgba(255, 255, 255, 0.8)",
-      }}
+  return (
+    <Card
+      flex
+      direction="row"
+      justify="space-between"
+      align="center"
+      css={{ mw: "500px" }}
+      shadow
+      isPressable
+      isHoverable
+      variant="bordered"
     >
-      <Row justify="space-between" align="top">
-        <Col>
-          <Text h3>{props.productTitle}</Text>
-        </Col>
-        <Col css={{ width: "auto" }}>
-          <Text
-            css={{
-              color: "$accents7",
-              fontWeight: "$semibold",
-              fontSize: "$2xl",
-              paddingLeft: "$12",
-            }}
-          >
-            ₹ {props.productPrice}
-          </Text>
-        </Col>
-      </Row>
-      <Spacer y={1} />
-    </Card.Footer>
-  </Card.Body>
-</Card>
-
-    );
-}
-
+      <Image src={props.image_url} width={150} height={150} fit="cover" />
+      <Card.Body >
+        <Text h3 style={{
+          paddingLeft: "25px",
+          paddingRight: "25px",
+        }}>
+          {props.productTitle}
+        </Text>
+        <Text h4 style={{
+          paddingLeft: "25px",
+          paddingRight: "25px",
+        }}>₹{props.productPrice}</Text>
+          <a href={props.productLink} target="_blank" style={{
+            paddingLeft: "25px",
+            paddingRight: "25px",
+          }}>
+            Buy Now
+          </a>
+      </Card.Body>
+    </Card>
+  );
+};
