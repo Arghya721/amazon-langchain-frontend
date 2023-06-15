@@ -4,7 +4,6 @@ import { Grid, Textarea, Col, Row } from '@nextui-org/react';
 import { SendButton } from "./SendButton";
 import { SendIcon } from "./SendIcon";
 import { motion } from 'framer-motion';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { AmazonCard } from './AmazonCard';
 import getAmazonLink from '../../../pages/api/fetchAIData';
@@ -29,7 +28,11 @@ export const SearchBar = ({ onSubmit }) => {
 
     const amazonLink = await getAmazonLink(inputValue);
 
-    const amazonData = await getAmazonData(amazonLink.amazon_link);
+    let amazonData = await getAmazonData(amazonLink.amazon_link);
+
+    while (amazonData.length === 0) {
+      amazonData = await getAmazonData(amazonLink.amazon_link);
+    }
 
     setAmazonData(amazonData);
 
