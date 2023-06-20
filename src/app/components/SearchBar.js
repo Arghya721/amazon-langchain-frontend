@@ -26,12 +26,12 @@ export const SearchBar = ({ onSubmit }) => {
     setIsLoading(true); // set loading state to true
     onSubmit();
 
-    const amazonLink = await getAmazonLink(inputValue);
+    const amazonAIData = await getAmazonLink(inputValue);
 
-    let amazonData = await getAmazonData(amazonLink.amazon_link);
+    let amazonData = await getAmazonData(amazonAIData);
 
     while (amazonData.length === 0) {
-      amazonData = await getAmazonData(amazonLink.amazon_link);
+      amazonData = await getAmazonData(amazonAIData);
     }
 
     setAmazonData(amazonData);
