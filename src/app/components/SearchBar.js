@@ -79,8 +79,14 @@ export const SearchBar = ({ onSubmit }) => {
 
         <Grid.Container justify="center" style={{
           position: "relative",
-          paddingLeft: "50px",
-          paddingRight: "50px",
+          "@xs" : {
+            paddingLeft: "25px",
+            paddingRight: "25px",
+          },
+          "@sm" : {
+            paddingLeft: "50px",
+            paddingRight: "50px",
+          },
         }}>
           {isLoading && (
             <>
@@ -98,7 +104,7 @@ export const SearchBar = ({ onSubmit }) => {
           )}
 
           {!isLoading && amazonData?.map((item) => (
-            <Grid xs={12} sm={4} key={amazonData.asin} style={{
+            <Grid xsMax={12} sm={6} md={4} key={amazonData.asin} style={{
               paddingTop: "50px",
               paddingBottom: "50px",
               paddingLeft: "25px",
