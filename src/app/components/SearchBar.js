@@ -55,7 +55,6 @@ export const SearchBar = ({ onSubmit }) => {
 
       setIsSubmitted(true);
       setIsLoading(true); // set loading state to true
-      onSubmit();
 
       setAmazonData(null);
 
@@ -76,7 +75,7 @@ export const SearchBar = ({ onSubmit }) => {
     if (page !== 0)
       loadPage();
 
-  }, [page]);
+  }, [page,amazonAIData]);
 
   return (
     <>
@@ -120,7 +119,7 @@ export const SearchBar = ({ onSubmit }) => {
         }}>
           <Text size="$3xl" h3 style={{
             textAlign: 'center'
-          }}>Sorry, we couldn't find any product for your search.</Text>
+          }}>Sorry, we couldn&apos;t find any product for your search.</Text>
         </Grid>
       }
 
