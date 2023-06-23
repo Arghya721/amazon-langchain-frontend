@@ -42,9 +42,6 @@ export const AmazonCard = (props) => {
             // objectPosition: "center",
             // filter: "brightness(1) invert(20%)", 
             }}
-            css={{
-               // Remove white background by inverting the image colors
-            }}
             autoResize
             src={props.image_url}
             width={150}

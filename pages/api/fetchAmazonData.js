@@ -1,8 +1,13 @@
-export default async function getAmazonData(amazonAIData) {
+export default async function getAmazonData(amazonAIData , page) {
 
     // get headers 
     const url = process.env.NEXT_PUBLIC_API_URL + "/get-amazon-page-data";
 
+    if (page === 0) {
+        page = 1;
+    }
+
+    amazonAIData.page = page;
 
     try {
         const response = await fetch(url, {
