@@ -16,7 +16,7 @@ export const SearchBar = ({ onSubmit }) => {
   const [isLoading, setIsLoading] = useState(false); // create loading state
   const [amazonData, setAmazonData] = useState(null);
   const [page, setPage] = useState(0);
-  const [amazonAIData , setAmazonAIData] = useState({});
+  const [amazonAIData, setAmazonAIData] = useState({});
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
@@ -49,7 +49,7 @@ export const SearchBar = ({ onSubmit }) => {
   };
 
   useEffect(() => {
-    
+
 
     const loadPage = async () => {
 
@@ -75,7 +75,7 @@ export const SearchBar = ({ onSubmit }) => {
     if (page !== 0)
       loadPage();
 
-  }, [page,amazonAIData]);
+  }, [page, amazonAIData]);
 
   return (
     <>
@@ -162,7 +162,7 @@ export const SearchBar = ({ onSubmit }) => {
               paddingLeft: "25px",
               paddingRight: "25px",
             }}>
-              <AmazonCard productTitle={item.productTitle} image_url={item.image_url} productLink={item.productLink} productPrice={item.productPrice} />
+              <AmazonCard productTitle={item.productTitle} image_url={item.image_url} productLink={item.productLink} productPrice={item.productPrice} productRating={item.productRating} productReviewCount={item.productReviewCount} />
             </Grid>
           ))}
         </Grid.Container>

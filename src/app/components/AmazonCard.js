@@ -1,16 +1,15 @@
 'use client';
-import { Card, Text, Image, Grid, Button, styled } from '@nextui-org/react';
+import { Card, Text, Image, Grid, Button } from '@nextui-org/react';
+import { StarRating } from "./StarRating";
 
 export const AmazonCard = (props) => {
 
   const shortenTitle = (title) => {
-    if (title.length > 50) {
-      return title.substring(0, 50) + "...";
+    if (title.length > 40) {
+      return title.substring(0, 40) + "...";
     }
     return title;
   };
-
-
 
   return (
     <Card
@@ -32,15 +31,15 @@ export const AmazonCard = (props) => {
           <Image
             containerCss={{
               "@md": {
-              top: "5rem",
-              margin: "0px"
+                top: "5rem",
+                margin: "0px"
               },
               "@sm": {
                 top: "3rem",
                 margin: "0px"
               },
-            // objectPosition: "center",
-            // filter: "brightness(1) invert(20%)", 
+              // objectPosition: "center",
+              // filter: "brightness(1) invert(20%)", 
             }}
             autoResize
             src={props.image_url}
@@ -53,7 +52,13 @@ export const AmazonCard = (props) => {
         </Grid>
         <Grid xs={6} md={6} style={{ height: "100%", flexDirection: "column", textAlign: "left" }}>
           <Text h4 style={{ marginBottom: "10px" }}>{shortenTitle(props.productTitle)}</Text>
-          <Text h4>₹{props.productPrice}</Text>
+
+          {props.productRating !== null && <StarRating rating={props.productRating} productReviewCount={props.productReviewCount} />}
+
+          <Text h4 style={{
+            marginTop: "0px",
+            marginBottom: "10px"
+          }}>₹{props.productPrice}</Text>
           <Button auto color="primary" onClick={() => window.open(props.productLink, "_blank")}>
             Buy Now
           </Button>
