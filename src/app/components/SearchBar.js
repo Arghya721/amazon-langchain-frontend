@@ -91,6 +91,8 @@ export const SearchBar = ({ onSubmit }) => {
             paddingLeft: "50px",
             paddingRight: "50px",
           }}
+
+
         >
           <div style={{ position: 'relative' }}>
             <Textarea
@@ -129,7 +131,7 @@ export const SearchBar = ({ onSubmit }) => {
         top: '10vh'
       }}>
 
-        <Grid.Container justify="center" style={{
+        <Grid.Container justify="center" css={{
           position: "relative",
           "@xs": {
             paddingLeft: "25px",
@@ -138,6 +140,10 @@ export const SearchBar = ({ onSubmit }) => {
           "@sm": {
             paddingLeft: "50px",
             paddingRight: "50px",
+          },
+          "@md": {
+            paddingLeft: "100px",
+            paddingRight: "100px",
           },
         }}>
           {isLoading && (
@@ -159,8 +165,8 @@ export const SearchBar = ({ onSubmit }) => {
             <Grid xsMax={12} sm={6} md={4} key={amazonData.asin} style={{
               paddingTop: "50px",
               paddingBottom: "50px",
-              paddingLeft: "25px",
-              paddingRight: "25px",
+              paddingLeft: "35px",
+              paddingRight: "35px",
             }}>
               <AmazonCard productTitle={item.productTitle} image_url={item.image_url} productLink={item.productLink} productPrice={item.productPrice} productRating={item.productRating} productReviewCount={item.productReviewCount} />
             </Grid>

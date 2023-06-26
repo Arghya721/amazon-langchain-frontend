@@ -1,10 +1,22 @@
 import React from 'react';
 import Rating from 'react-rating';
 import { FaStar, FaRegStar } from 'react-icons/fa';
-import { Text } from '@nextui-org/react';
+import { Grid, Text } from '@nextui-org/react';
 
 export const StarRating = ({ rating, productReviewCount }) => {
     const decimalRating = parseFloat(rating);
+
+    function formatNumber(numberString) {
+        const number = parseInt(numberString.replace(/,/g, ""));
+        if (number >= 1000) {
+            const formattedNumber = Math.floor(number / 1000) + "k";
+            return formattedNumber;
+        } else {
+            return numberString;
+        }
+    }
+
+    const formattedReviewCount = formatNumber(productReviewCount);
 
     const starStyle = {
         color: '#f5c21b',
@@ -38,7 +50,21 @@ export const StarRating = ({ rating, productReviewCount }) => {
                     <div style={borderStyle} />
                 </Rating.FullSymbol>
             </Rating>
-            <Text h5 style={{ marginLeft: 4 }}>{productReviewCount}</Text>
+            <Text h5
+                style={{ marginLeft: 4 }}
+                css={{
+                    "@xs": {
+                        fontSize: "0.6rem"
+                    },
+                    "@sm": {
+                        fontSize: "0.5rem"
+                    },
+                    "@md": {
+                        fontSize: "1rem"
+                    }
+                }}
+
+            >{formattedReviewCount}</Text>
         </div>
     );
 };

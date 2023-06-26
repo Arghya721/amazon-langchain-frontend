@@ -18,8 +18,14 @@ export const AmazonCard = (props) => {
       justify="space-between"
       align="center"
       css={{
-        mw: "500px",
-        height: "300px"
+        "@md": {
+          mw: "600px",
+          height: "300px"
+        },
+        "@xs" : {
+          height: "300px",
+          mw : "500px"
+        }
       }}
       shadow
       isPressable
