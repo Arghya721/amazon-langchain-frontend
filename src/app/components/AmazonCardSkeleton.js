@@ -32,7 +32,7 @@ export const AmazonCardSkeleton = () => {
               borderRadius: "10%",
             }} />
           </Grid>
-          <Grid xs={6} md={6} style={{ height: "100%", flexDirection: "column", textAlign: "left", marginTop: "50px" }}>
+          <Grid xs={6} md={6} style={{ height: "100%", flexDirection: "column", textAlign: "left", marginTop: "50px" , paddingLeft : "25px" }}>
             <Text h4 style={{ marginBottom: "10px" }}>
               <Skeleton width="100%" height="100%" />
             </Text>
