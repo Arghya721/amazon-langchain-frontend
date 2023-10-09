@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSpeechContext, SpeechProvider } from '@speechly/react-client';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Grid, Avatar, Textarea , Pagination } from '@nextui-org/react';
+import { Grid, Avatar, Textarea, Pagination } from '@nextui-org/react';
 import Mic from '../components/Mic';
 import PauseButton from '../components/PauseButton';
 // import AISearch from '../../../pages/api/aiSearch';
@@ -10,6 +10,17 @@ import getAmazonLink from '../../../pages/api/fetchAIData';
 import getAmazonData from '../../../pages/api/fetchAmazonData';
 import { AmazonCard } from '../components/AmazonCard';
 import { AmazonCardSkeleton } from '../components/AmazonCardSkeleton';
+import { ChatOpenAI } from "langchain/chat_models/openai";
+import { ConversationBufferWindowMemory } from 'langchain/chains/conversation/memory';
+import { Tool } from 'langchain/agents';
+import { initialize_agent } from 'langchain/agents';
+import { search_text as searchAgent } from 'langchain/agents';
+import { AgentType } from 'langchain/agents';
+
+
+
+
+
 
 const appId = process.env.NEXT_PUBLIC_SPEECHLY_APP_ID;
 
@@ -40,6 +51,39 @@ function HomePageContent() {
   const [amazonAIData, setAmazonAIData] = useState({});
   const [isLoading, setIsLoading] = useState(false); // create loading state
 
+  const turbo_llm = new ChatOpenAI({
+    engine: "davinci",
+    temperature: 0.9,
+    max_tokens: 150,
+    openAIApiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+  });
+
+  const amazonTool = new Tool({
+    name: "amazon",
+    func: searchAmazon,
+    description: "Searches Amazon for a product. Input should be lower_price, upper_price, search_string, company_name"
+  })
+
+  const tools = [amazonTool];
+
+  const memory = new ConversationBufferWindowMemory({
+    memory_size: 10,
+  });
+    
+
+  const conversationalAgent = initialize_agent({
+    agent: AgentType.CONVERSATIONAL_REACT_DESCRIPTION,
+    tools: tools,
+    llm: turbo_llm,
+    verbose: true,
+    max_iterations: 3,
+    early_stopping_method: 'generate',
+    memory: memory
+  });
+
+  const searchAmazon = (lower_price, upper_price, search_string, company_name) => {
+    
+  }
 
 
 
